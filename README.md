@@ -15,6 +15,8 @@ cd django/app/
 ```
 ### **3. Open the code editor by your preference and coding!**
 
+___ 
+
 ## Make commands documentation
 This is a simplified documentation about how to use the commands of the Makefile with make.
 
