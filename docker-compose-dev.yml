@@ -3,11 +3,11 @@ version: '3.8'
 services:
   web:
     container_name: web_django
-    build:
-      context: ./django
-      dockerfile: Dockerfile.dev
     image: lucasfs/django_lwandisurf_dev
     restart: always
+    # build:
+    #   context: ./django
+    #   dockerfile: Dockerfile.dev
     volumes:
       - django_project:/app/web/
     env_file: 
@@ -20,9 +20,9 @@ services:
   db:
     container_name: db_postgres
     restart: always
-    build:
-      context: ./postgres
     image: lucasfs/postgres_lwandisurf_dev
+    # build:
+    #   context: ./postgres
     volumes:
       - postgres_backup:/backup/
     env_file: 
