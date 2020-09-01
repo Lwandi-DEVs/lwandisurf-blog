@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: web_django
+    build:
+      context: ./django
+    image: "django_web"
+    restart: always
+    env_file: 
+      - ./env_files/.env.prod.web
+    expose:
+      - 8000
+    depends_on:
+      - db
+      
+  db:
+    container_name: db_postgres
+    restart: always
+    image: postgres:12.0-alpine
+    volumes:
+      - $PWD/volumes/postgres:/var/lib/postgresql/data/
+    env_file: 
+      - ./env_files/.env.prod.db
+
+  proxy:
+    container_name: proxy_nginx
+    build:
+      context: ./nginx
+    image: "nginx_proxy"
+    volumes:
+      - static_data:/home/app/web/staticfiles
+      - media_data:/home/app/web/mediafiles
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+
+volumes:
+  static_data:
+  media_data:

@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: web_django
+    build:
+      context: ./django
+      dockerfile: Dockerfile.dev
+    image: lucasfs/django_lwandisurf_dev
+    restart: always
+    volumes:
+      - django_project:/app/web/
+    env_file: 
+      - ./env_files/.env.dev.web
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      
+  db:
+    container_name: db_postgres
+    restart: always
+    build:
+      context: ./postgres
+    image: lucasfs/postgres_lwandisurf_dev
+    volumes:
+      - postgres_backup:/backup/
+    env_file: 
+      - ./env_files/.env.dev.db
+
+volumes:
+  postgres_backup:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/volumes/postgres_backup
+      o: bind
+  
+  django_project:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/django/app
+      o: bind
