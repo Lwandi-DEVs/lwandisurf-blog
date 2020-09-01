@@ -8,6 +8,9 @@
 make stack_up
 ```
 
+- The Django application will be served in localhost:8000
+- For Django logs visualization execute "make logs_web"
+
 ### **2. Go to the Django project directory:** ###
 
 ``` 
