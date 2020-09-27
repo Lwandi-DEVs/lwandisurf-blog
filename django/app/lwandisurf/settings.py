@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    #'gallery',
+    'gallery',
     'user',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_URL = "/mediafiles/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+
+AUTH_USER_MODEL = 'user.User'  # changes built-in user model to ours
