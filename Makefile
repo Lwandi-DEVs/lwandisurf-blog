@@ -8,6 +8,9 @@ collectstatic:
 	docker-compose -f docker-compose-dev.yml exec web python manage.py collectstatic --no-input --clear
 	docker-compose -f docker-compose-dev.yml exec web chmod -R 777 staticfiles/
 
+createsuperuser:
+	docker-compose -f docker-compose-dev.yml exec web python manage.py createsuperuser
+
 media_permissions:
 	docker-compose -f docker-compose-dev.yml exec web chmod -R 777 mediafiles/
 

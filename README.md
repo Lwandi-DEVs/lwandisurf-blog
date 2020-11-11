@@ -45,6 +45,12 @@ make migrate
 make collectstatic 
 ```
 
+- **createsuperuser:** Create a Django super user. ( Alias to: *python manage.py createsuperuser* )
+
+```
+make createsuperuser
+```
+
 ### **Files and directories**
 Commands to managing files and directories inside of services containers.
 

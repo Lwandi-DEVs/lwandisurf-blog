@@ -16,9 +16,21 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+from rest_framework import routers
+from core.api.viewsets import LwandisurfViewSet
+from gallery.api.viewsets import AlbumViewSet, PhotoViewSet
+from user.api.viewsets import UserViewSet
+
+router = routers.SimpleRouter()
+router.register(r'lwandisurf', LwandisurfViewSet)
+router.register(r'albums', AlbumViewSet)
+router.register(r'photos', PhotoViewSet)
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
