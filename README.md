@@ -115,8 +115,7 @@ make db_restore
 This is a simplified documentation of the REST API.
 
 ### **User autentication**
-264 / 5000
-Resultados de tradução
+
 All API endpoints require Token authentication to be consumed.
   To perform authentication through an HTTP request, it is necessary to perform a POST request to the endpoint [http://localhost:8000/api-auth/](http://localhost:8000/api-auth/) (localhost link) with the following body (example):
 
