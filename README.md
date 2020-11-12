@@ -111,3 +111,28 @@ make db_backup
 make db_restore
 ```
 	
+## Basic API documentation
+This is a simplified documentation of the REST API.
+
+### **User autentication**
+264 / 5000
+Resultados de tradução
+All API endpoints require Token authentication to be consumed.
+  To perform authentication through an HTTP request, it is necessary to perform a POST request to the endpoint [http://localhost:8000/api-auth/](http://localhost:8000/api-auth/) (localhost link) with the following body (example):
+
+```
+{
+    "username" : "admin"
+    "password" : "test123"
+}   
+```
+
+The request returns the user's token in response to a successful login. If the login is not successful the request will return a message of invalid authentication data.
+
+### **Send token in requests**
+
+For users to authenticate, the user token key should be included in the Authorization HTTP header. The key should be prefixed by the string literal "Token", with whitespace separating the two strings. For example:
+
+```
+Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b
+```

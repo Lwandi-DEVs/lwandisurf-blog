@@ -4,4 +4,4 @@ from core.models import Lwandisurf
 class LwandisurfSerializer(ModelSerializer):
     class Meta:
         model = Lwandisurf
-        fields = ['about', 'history', 'values']
+        fields = ('about', 'history', 'values')
