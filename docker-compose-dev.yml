@@ -3,7 +3,7 @@ version: '3.8'
 services:
   web:
     container_name: web_django
-    image: lucasfs/django_lwandisurf_dev
+    image: lucasfs/django_lwandisurf_dev:1.0
     restart: always
     # build:
     #   context: ./django
@@ -20,7 +20,7 @@ services:
   db:
     container_name: db_postgres
     restart: always
-    image: lucasfs/postgres_lwandisurf_dev
+    image: lucasfs/postgres_lwandisurf_dev:1.0
     # build:
     #   context: ./postgres
     volumes:
