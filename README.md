@@ -1,5 +1,7 @@
 # lwandisurf-blog :surfer:
 
+Website developed for the ONG LwandiSurf (Mental health organization. Gives opportunities and life lessons to local kids through)
+
 ## How to run the docker compose stack for development?
 
 ### **1. Run the follow command:** ### 
