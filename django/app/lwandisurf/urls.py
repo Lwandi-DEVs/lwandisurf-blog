@@ -24,12 +24,14 @@ from rest_framework.authtoken.views import obtain_auth_token
 from core.api.viewsets import LwandisurfViewSet
 from gallery.api.viewsets import AlbumViewSet, PhotoViewSet
 from user.api.viewsets import UserViewSet
+from blog.api.viewsets import PostViewSet
 
 router = routers.SimpleRouter()
 router.register(r'lwandisurf', LwandisurfViewSet)
 router.register(r'albums', AlbumViewSet)
 router.register(r'photos', PhotoViewSet)
 router.register(r'users', UserViewSet)
+router.register(r'posts', PostViewSet)
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
