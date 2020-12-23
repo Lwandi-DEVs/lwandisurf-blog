@@ -37,7 +37,7 @@ services:
     image: lwandisurf/node:latest
     stdin_open: true
     volumes:
-      - './ui:/app'
+      - './interface:/app'
       - '/app/node_modules'
     ports:
       - "3001:3000"
