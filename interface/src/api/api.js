@@ -2,13 +2,17 @@ import React from 'react'
 import axios from 'axios'
 
 const defaultOptions = {
-	baseURL: 'http://web_django:8000',
-	headers: {
-		'Content-Type': 'application/json',
-		'Authorization': '08ea903988c7743c9b59c9e348057cc4d8b0119d'
-	}
+	baseURL: 'https://a5223d989414.ngrok.io/',
+	//baseURL: 'http://172.29.0.3:8000',
 };
 
 const instance = axios.create(defaultOptions);
+
+const reponse = instance.post("/api-auth", {
+	username: "admin",
+	password: "teste123"
+});
+
+console.log(reponse)
 
 export default instance;

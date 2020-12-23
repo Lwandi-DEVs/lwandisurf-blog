@@ -122,8 +122,8 @@ function Blog() {
   );
 }
 
-const response = instance.get('/posts');
+//const response = instance.get('/posts');
 
-console.log(response)
+//console.log(response)
 
 export default Blog;
