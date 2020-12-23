@@ -5,6 +5,7 @@ services:
     container_name: web_django
     image: lucasfs/django_lwandisurf_dev:1.0
     restart: always
+    hostname: web_django
     # build:
     #   context: ./django
     #   dockerfile: Dockerfile.dev
@@ -19,6 +20,7 @@ services:
       
   db:
     container_name: db_postgres
+    hostname: db_postgres
     restart: always
     image: lucasfs/postgres_lwandisurf_dev:1.0
     # build:
@@ -27,6 +29,18 @@ services:
       - postgres_backup:/backup/
     env_file: 
       - ./env_files/.env.dev.db
+
+  ui:
+    container_name: ui_react
+    hostname: ui_react
+    restart: always
+    image: lwandisurf/node:latest
+    stdin_open: true
+    volumes:
+      - './ui:/app'
+      - '/app/node_modules'
+    ports:
+      - "3001:3000"
 
 volumes:
   postgres_backup:

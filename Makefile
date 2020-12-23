@@ -32,6 +32,9 @@ logs_web:
 logs_db:
 	docker-compose -f docker-compose-dev.yml logs -f db
 
+logs_ui:
+	docker-compose -f docker-compose-dev.yml logs -f ui
+
 db_backup:
 	docker-compose -f docker-compose-dev.yml exec db backup.sh
 
