@@ -2,17 +2,37 @@ import React from 'react'
 import axios from 'axios'
 
 const defaultOptions = {
-	baseURL: 'https://a5223d989414.ngrok.io/',
-	//baseURL: 'http://172.29.0.3:8000',
+	baseURL: 'http://localhost:8000',
+	headers: {
+        'Content-Type': 'application/json'
+    }
 };
 
-const instance = axios.create(defaultOptions);
+let instance = axios.create(defaultOptions);
 
-const reponse = instance.post("/api-auth", {
-	username: "admin",
-	password: "teste123"
-});
+async function getToken() {
 
-console.log(reponse)
+	const response = await instance.post("/api-auth/", {
+		username: "admin",
+		password: "teste123"
+	})
+	.then(result => {
+		// Armazenamento da variável token na cache do navegador;
+
+		localStorage['tokenLwandi'] = result.data.token;
+
+		return result;
+	})
+	.catch(error => {
+		console.log(error);
+		return error;
+	});
+};
+
+const promise = getToken();
+
+var myToken = localStorage['tokenLwandi'] || 'default';
+
+instance.defaults.headers.common['Authorization'] = myToken ? `Token ${myToken}` : '';
 
 export default instance;
