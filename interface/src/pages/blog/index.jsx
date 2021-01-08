@@ -122,8 +122,14 @@ function Blog() {
   );
 }
 
-const response = instance.get('/posts');
+async function getPosts() {
 
-console.log(response)
+    const response = await instance.get('/posts');
+
+    console.log(response.data);
+
+}
+
+getPosts();
 
 export default Blog;

@@ -2,13 +2,37 @@ import React from 'react'
 import axios from 'axios'
 
 const defaultOptions = {
-	baseURL: 'http://web_django:8000',
+	baseURL: 'http://localhost:8000',
 	headers: {
-		'Content-Type': 'application/json',
-		'Authorization': '08ea903988c7743c9b59c9e348057cc4d8b0119d'
-	}
+        'Content-Type': 'application/json'
+    }
 };
 
-const instance = axios.create(defaultOptions);
+let instance = axios.create(defaultOptions);
+
+async function getToken() {
+
+	const response = await instance.post("/api-auth/", {
+		username: "admin",
+		password: "teste123"
+	})
+	.then(result => {
+		// Armazenamento da variável token na cache do navegador;
+
+		localStorage['tokenLwandi'] = result.data.token;
+
+		return result;
+	})
+	.catch(error => {
+		console.log(error);
+		return error;
+	});
+};
+
+const promise = getToken();
+
+var myToken = localStorage['tokenLwandi'] || 'default';
+
+instance.defaults.headers.common['Authorization'] = myToken ? `Token ${myToken}` : '';
 
 export default instance;
