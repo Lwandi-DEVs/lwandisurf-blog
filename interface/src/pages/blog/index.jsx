@@ -126,7 +126,7 @@ async function getPosts() {
 
     const response = await instance.get('/posts');
 
-    console.log(response.data);
+    //console.log(response.data);
 
 }
 

@@ -4,19 +4,23 @@ import instance from "../../api/api.js"
 
 // import { Container } from './styles';
 
+
+var dictPhotos = new Map();
+
 function Galery() {
   return <h1>Galeria</h1>;
 }
 
+async function getPhotos() {
 
-async function getAlbums() {
+	const photos = await instance.get('/photos');
+	const albums = await instance.get('/albums');
 
-	const response = await instance.get('/photos')
-
-	console.log(response);
+	console.log(photos.data); // Photos
+	console.log(albums.data); // Albuns
 
 }
 
-var albuns = getAlbums();
+getPhotos();
 
 export default Galery;
