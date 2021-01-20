@@ -40,7 +40,7 @@ function BlogPreview() {
 
                 <div className="row">
                     <div className="col-md-4 col-md-offset-4 text-center animate-box">
-                        <a href="#" className="btn btn-primary btn-lg"> Nosso blog</a>
+                        <a href="/blog" className="btn btn-primary btn-lg"> Nosso blog</a>
                     </div>
                 </div>
             </div>
