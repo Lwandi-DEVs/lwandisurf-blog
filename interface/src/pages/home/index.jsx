@@ -22,8 +22,6 @@ const Home = () => {
                     mainTitle="Lwandisurf"
                     subtitle="Uma onda de esperança"
                     image="images/home-cover.jpg"
-                    buttonContent="Message Button"
-                    btnLink="/"
                     classExtra="fh5co-cover-center h2-100"
                 />
                 {/* <!-- end:header-top --> */}

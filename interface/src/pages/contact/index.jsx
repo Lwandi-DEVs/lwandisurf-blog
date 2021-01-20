@@ -15,8 +15,6 @@ function Contact() {
                 mainTitle="Entre em contato"
                 subtitle="Apoie o projeto via financiamento recorrente pelo Benfeitoria."
                 image="images/contato-cover.jpg"
-                buttonContent="Apoie"
-                btnLink="https://benfeitoria.com/lwandisurf"
             />
             
             <div id="fh5co-contact" className="fh5co-content-section">

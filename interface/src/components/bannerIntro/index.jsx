@@ -13,8 +13,8 @@ function BannerIntro({ mainTitle, subtitle, image, buttonContent, btnLink, class
                     <h2>{mainTitle}</h2>
                     <span>{subtitle}</span>
                     <span>
-                        <a className="btn btn-primary btn-lg" href={btnLink}>
-                            {buttonContent}
+                        <a className="btn btn-primary btn-lg" href="https://benfeitoria.com/lwandisurf" target="blank">
+                            Apoie o projeto
                         </a>
                     </span>
                 </div>

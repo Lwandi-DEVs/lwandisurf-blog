@@ -15,8 +15,6 @@ function About() {
                 mainTitle="Sobre nós"
                 subtitle="Lwandisurf - Uma onda de esperança."
                 image="images/about-cover.jpg"
-                buttonContent="Apoie o projeto"
-                btnLink="https://benfeitoria.com/lwandisurf"
             />
             
             <div id="fh5co-about" className="fh5co-content-section">

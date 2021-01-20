@@ -16,8 +16,6 @@ function Project() {
                 mainTitle="Nossos projetos"
                 subtitle="Vamos surfar juntos nessa!"
                 image="images/projeto-cover.jpg"
-                buttonContent="Apoie o projeto"
-                btnLink="https://benfeitoria.com/lwandisurf"
             />
 
             <div id="fh5co-about" className="fh5co-content-section container">
