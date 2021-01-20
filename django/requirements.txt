@@ -5,3 +5,4 @@ pillow
 djangorestframework
 django-summernote
 django-cors-headers
+django-filter

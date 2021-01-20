@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_summernote',
+    'django_filters',
     # apps
     'core',
     'gallery',
