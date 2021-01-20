@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PostPreview from "../../components/PostPreview";
+import PostPreview from "../../components/postPreview";
 
 import { getPosts } from "../../api/api.js";
 

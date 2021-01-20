@@ -3,7 +3,7 @@ import SocialLinks from "../../components/socialLinks";
 import Header from "../../components/header";
 import Footer from "../../components/footer/index";
 import BannerIntro from "../../components/bannerIntro";
-import PostPreview from "../../components/PostPreview";
+import PostPreview from "../../components/postPreview";
 
 import { getPosts } from "../../api/api.js";
 
@@ -48,6 +48,7 @@ function Blog() {
                                     title = {post.title} 
                                     image = {post.cover} 
                                     content = {post.content}
+                                    date = {post.created}
                                 /> 
                             );
                         })}

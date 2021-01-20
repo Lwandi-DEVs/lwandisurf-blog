@@ -9,7 +9,8 @@ import BannerIntro from "../../components/bannerIntro";
 import Gallery from "../../components/gallery";
 import Projects from "../../components/projects";
 import Volunteers from "../../components/volunteers";
-import CallBanner from "../../components/callBanner";
+import ContactInfo from "../../components/contactInfo";
+// import CallBanner from "../../components/callBanner";
 
 const Home = () => {
     return (
@@ -18,6 +19,7 @@ const Home = () => {
             <div id="fh5co-page">
                 <SocialLinks />
                 <Header />
+
                 <BannerIntro
                     mainTitle="Lwandisurf"
                     subtitle="Uma onda de esperança"
@@ -66,8 +68,8 @@ const Home = () => {
                 </div>
 
                 <Gallery />
-                <Volunteers />
 
+                <Volunteers />
 
                 <div id="fh5co-services-section">
                     <div className="container">
@@ -82,6 +84,9 @@ const Home = () => {
                 </div>
 
                 <BlogPreview />
+
+                <ContactInfo />
+
                 <Footer />
             </div>
         </div>
