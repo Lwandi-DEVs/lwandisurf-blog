@@ -5,7 +5,7 @@ from gallery.models import Album, Photo
 from .serializers import AlbumSerializer, PhotoSerializer
 
 class AlbumViewSet(ModelViewSet):
-    queryset = Album.objects.all()
+    queryset = Album.objects.order_by('-id').all()
     serializer_class = AlbumSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)

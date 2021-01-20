@@ -54,3 +54,35 @@ export async function getPost(id) {
 	return response.data;
 
 }
+
+export async function getAlbums(recents=false) {
+
+	var photos = await instance.get('/photos');
+	var albums = await instance.get('/albums');
+
+	console.log(photos);
+
+	albums.data.forEach(element => {
+		element.cover = photos.data[0].path;
+	});
+	
+	if(recents)
+		albums.data = albums.data.slice(0, 4);
+
+	return albums.data;
+
+}
+
+export async function getAlbum(id) {
+
+	var album = await instance.get(`/albums/${id}`);
+	return album.data;
+
+}
+
+export async function getPhotos(album_id) {
+
+	var photos = await instance.get('/photos');
+	return photos.data;
+
+}

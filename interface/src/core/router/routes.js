@@ -7,6 +7,7 @@ import BlogPost from "../../pages/blogPost";
 import About from "../../pages/about";
 import Contact from "../../pages/contact";
 import Gallery from "../../pages/gallery";
+import Album from "../../pages/album";
 
 const routeList = [
   {
@@ -48,6 +49,12 @@ const routeList = [
   {
     path: "/gallery",
     component: Gallery,
+    exact: true,
+    private: false,
+  },
+  {
+    path: "/album/:id",
+    component: Album,
     exact: true,
     private: false,
   },

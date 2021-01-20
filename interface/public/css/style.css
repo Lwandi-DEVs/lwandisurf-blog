@@ -1601,3 +1601,20 @@ figure {
 .ml-2 {
   margin-left: calc(1em * .5) !important;
 }
+
+.prod-title h3 a {
+  color: var(--dark-blue);
+  font-weight: bold;
+}
+
+#photos-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#photos-list img {
+  margin: 5px;
+  max-height: 300px;
+  width: auto;
+}
