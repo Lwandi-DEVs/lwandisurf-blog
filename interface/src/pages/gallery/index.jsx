@@ -37,7 +37,7 @@ function Galery() {
                     </div>
 
                     <div className="container">
-                        <div id="albums-list" className="row row-bottom-padded-md">
+                        <div id="albums-list" className="row row-bottom-padded-md albums-list">
                             
                         {albums.map((album) => {
                             return (

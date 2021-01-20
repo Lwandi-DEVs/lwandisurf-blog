@@ -6,7 +6,7 @@ import Footer from "../../components/footer/index";
 import SocialLinks from "../../components/socialLinks";
 import BlogPreview from "../../components/blogPreview";
 import BannerIntro from "../../components/bannerIntro";
-import Gallery from "../../components/gallery";
+import GalleryPreview from "../../components/galleryPreview";
 import Projects from "../../components/projects";
 import Volunteers from "../../components/volunteers";
 import ContactInfo from "../../components/contactInfo";
@@ -67,7 +67,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                <Gallery />
+                <GalleryPreview />
 
                 <Volunteers />
 

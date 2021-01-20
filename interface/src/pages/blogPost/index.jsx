@@ -14,7 +14,7 @@ function BlogPost({match}) {
         getPost(match.params.id).then((payload) => {setPost(payload)});
     }, []);
 
-    var date = new Date(post.created);
+    let date = new Date(post.created);
     date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
 
     return (

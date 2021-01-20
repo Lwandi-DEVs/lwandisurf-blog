@@ -16,10 +16,10 @@ function Album({match}) {
     const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
-        getPhotos(album.id).then((payload) => {setPhotos(payload)});
+        getPhotos(match.params.id).then((payload) => {setPhotos(payload)});
     }, []);
 
-    var date = new Date(album.created);
+    let date = new Date(album.created);
     date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
 
     return (
@@ -47,7 +47,7 @@ function Album({match}) {
                             </div>
                         </div>
 
-                        <div id="photos-list" className="row row-bottom-padded-md">
+                        <div id="photos-list" className="row row-bottom-padded-md photos-list">
                             
                             {photos.map((photo) => {
                                 return (

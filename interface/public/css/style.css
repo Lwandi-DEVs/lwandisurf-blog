@@ -1607,14 +1607,55 @@ figure {
   font-weight: bold;
 }
 
-#photos-list {
+.photos-list, .albums-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-#photos-list img {
+.photos-list img, .albums-list img {
   margin: 5px;
   max-height: 300px;
   width: auto;
+}
+
+.albums-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.album-preview {
+  margin: 5px;
+  height: 350px;
+  width: 350px;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  color: #FFF;
+  font-size: 24px;
+  box-shadow: inset 0px -130px 100px -100px rgba(0,0,0,0.60);
+}
+
+.albums-list-recent .album-preview {
+  width: 400px;
+}
+
+.albums-list-recent a:first-child .album-preview,
+.albums-list-recent a:last-child .album-preview {
+  width: 700px !important;
+}
+
+.album-preview img {
+  visibility: hidden;
+}
+
+.album-preview span {
+  position: absolute;
+}
+
+.album-preview:hover {
+  box-shadow: inset 0px -200px 100px -60px rgba(0,0,0,0.80);
+  transition: box-shadow 0.3s ease-in-out;
 }

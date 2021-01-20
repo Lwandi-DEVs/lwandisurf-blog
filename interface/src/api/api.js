@@ -31,15 +31,15 @@ async function getToken() {
 
 const promise = getToken();
 
-var myToken = localStorage['tokenLwandi'] || 'default';
+let myToken = localStorage['tokenLwandi'] || 'default';
 
 instance.defaults.headers.common['Authorization'] = myToken ? `Token ${myToken}` : '';
 
 export async function getPosts(recents=false) {
 
-	var response = await instance.get('/posts');
+	let response = await instance.get('/posts');
 
-	var posts = response.data;
+	let posts = response.data;
 	
 	if(recents)
 		posts = posts.slice(0, 3);
@@ -50,21 +50,19 @@ export async function getPosts(recents=false) {
 
 export async function getPost(id) {
 
-	var response = await instance.get(`/posts/${id}`);
+	let response = await instance.get(`/posts/${id}`);
 	return response.data;
 
 }
 
 export async function getAlbums(recents=false) {
 
-	var photos = await instance.get('/photos');
-	var albums = await instance.get('/albums');
+	let albums = await instance.get('/albums');
 
-	console.log(photos);
-
-	albums.data.forEach(element => {
-		element.cover = photos.data[0].path;
-	});
+	for (let album of albums.data) {
+		let photos = await instance.get(`/photos?album_fk=${album.id}`);
+		album.cover = photos.data[0].path;
+	}
 	
 	if(recents)
 		albums.data = albums.data.slice(0, 4);
@@ -75,14 +73,14 @@ export async function getAlbums(recents=false) {
 
 export async function getAlbum(id) {
 
-	var album = await instance.get(`/albums/${id}`);
+	let album = await instance.get(`/albums/${id}`);
 	return album.data;
 
 }
 
 export async function getPhotos(album_id) {
 
-	var photos = await instance.get('/photos');
+	let photos = await instance.get(`/photos?album_fk=${album_id}`);
 	return photos.data;
 
 }
