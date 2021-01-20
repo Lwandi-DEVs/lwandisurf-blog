@@ -7,7 +7,7 @@ const Header =()=>{
 				<div className="nav-header">
 					<a href="/" className="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
 					<h1 id="fh5co-logo">
-						<a href="/"><img src="images/logo.png" alt=""/></a>
+						<a href="/"><img src="../images/logo.png" alt=""/></a>
 					</h1>
 					{/* <!-- START #fh5co-menu-wrap --> */}
 					<nav id="fh5co-menu-wrap" role="navigation">
@@ -27,6 +27,7 @@ const Header =()=>{
 							</li> */}
 							<li><a href="/project">Projeto</a></li>
 							<li><a href="/blog">Blog</a></li>
+							<li><a href="/gallery">Galeria</a></li>
 							<li><a href="/about">Sobre nós</a></li>
 							<li><a href="/contact">Contato</a></li>
 						</ul>

@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import PostPreview from "../../components/PostPreview";
 
-// import { Container } from './styles';
+import { getPosts } from "../../api/api.js";
 
 function BlogPreview() {
+
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        getPosts(true).then((payload) => {setPosts(payload)});
+    }, []);
+
     return (
         <div id="fh5co-blog-section" className="fh5co-section-gray">
             <div className="container">
@@ -14,90 +22,25 @@ function BlogPreview() {
             </div>
             <div className="container">
                 <div className="row row-bottom-padded-md">
-                    {/* POST */}
-                    <div className="col-lg-4 col-md-4 col-sm-6">
-                        <div className="fh5co-blog animate-box">
-                            <a href="#">
-                                <img className="img-responsive" src="images/blog1.jpg" alt="" />
-                            </a>
-                            <div className="blog-text">
-                                <div className="prod-title">
-                                    <h3>
-                                        <a href="#">Medical Mission in Southern Kenya</a>
-                                    </h3>
-                                    <span className="posted_by">Sep. 15th</span>
-                                    <span className="comment">
-                                        <a href="">21<i className="icon-bubble2"></i></a>
-                                    </span>
-                                    <p>
-                                        Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind
-                                        texts.
-                                    </p>
-                                    <p><a href="#">Learn More...</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* POST */}
-                    <div className="col-lg-4 col-md-4 col-sm-6">
-                        <div className="fh5co-blog animate-box">
-                            <a href="#">
-                                <img className="img-responsive" src="images/blog2.jpg" alt=""/>
-                            </a>
-                            <div className="blog-text">
-                                <div className="prod-title">
-                                    <h3>
-                                        <a href="#">Medical Mission in Southern Kenya</a>
-                                    </h3>
-                                    <span className="posted_by">Sep. 15th</span>
-                                    <span className="comment">
-                                        <a href=""> 21<i className="icon-bubble2"></i></a>
-                                    </span>
-                                    <p>
-                                        Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind
-                                        texts.
-                                    </p>
-                                    <p><a href="#">Learn More...</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     
-                    {/* POST */}
-                    <div className="col-lg-4 col-md-4 col-sm-6">
-                        <div className="fh5co-blog animate-box">
-                            <a href="#">
-                                <img className="img-responsive" src="images/blog3.jpg" alt="" />
-                            </a>
-                            <div className="blog-text">
-                                <div className="prod-title">
-                                    <h3>
-                                        <a href="#">Medical Mission in Southern Kenya</a>
-                                    </h3>
-                                    <span className="posted_by">Sep. 15th</span>
-                                    <span className="comment">
-                                        <a href=""> 21<i className="icon-bubble2"></i> </a>
-                                    </span>
-                                    <p>
-                                        Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind
-                                        texts.
-                                    </p>
-                                    <p> <a href="#">Learn More...</a> </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {posts.map((post) => {
+                        return (
+                            <PostPreview 
+                                key = {post.id}
+                                id = {post.id}
+                                title = {post.title} 
+                                image = {post.cover} 
+                                content = {post.content}
+                            /> 
+                        );
+                    })}
 
                     <div className="clearfix visible-md-block"></div>
                 </div>
 
                 <div className="row">
                     <div className="col-md-4 col-md-offset-4 text-center animate-box">
-                        <a href="#" className="btn btn-primary btn-lg"> Our Blog</a>
+                        <a href="#" className="btn btn-primary btn-lg"> Nosso blog</a>
                     </div>
                 </div>
             </div>

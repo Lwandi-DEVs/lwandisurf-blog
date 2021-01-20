@@ -5,7 +5,7 @@ from blog.models import Post
 from .serializers import PostSerializer
 
 class PostViewSet(ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.order_by('-id').all()
     serializer_class = PostSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)

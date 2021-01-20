@@ -35,4 +35,22 @@ var myToken = localStorage['tokenLwandi'] || 'default';
 
 instance.defaults.headers.common['Authorization'] = myToken ? `Token ${myToken}` : '';
 
-export default instance;
+export async function getPosts(recents=false) {
+
+	var response = await instance.get('/posts');
+
+	var posts = response.data;
+	
+	if(recents)
+		posts = posts.slice(0, 3);
+
+	return posts;
+
+}
+
+export async function getPost(id) {
+
+	var response = await instance.get(`/posts/${id}`);
+	return response.data;
+
+}
