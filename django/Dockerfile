@@ -7,7 +7,9 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /requirements.txt
 
 # Install dependencies
-RUN apk add --no-cache --virtual .build-deps libxml2-dev libc-dev  zlib  && \
+RUN apk update
+
+RUN apk add --no-cache --virtual .build-deps libxml2 libxslt libxml2-dev libc-dev  zlib  && \
     apk add --no-cache libxslt && \
     pip install --no-cache-dir lxml>=3.5.0 && \
     apk del .build-deps
@@ -15,11 +17,11 @@ RUN apk add --no-cache --virtual .build-deps libxml2-dev libc-dev  zlib  && \
 RUN apk update \
     && apk add --no-cache linux-headers postgresql-dev gcc python3-dev musl-dev
 
-# Pillow dependencias
-RUN apk add zlib-dev jpeg-dev libjpeg
-
 RUN pip install --upgrade pip
 RUN pip install -r /requirements.txt
+
+# Pillow dependencias
+RUN apk add zlib-dev jpeg-dev libjpeg
 
 # Create home directory for the app user
 RUN mkdir -p /home/app
