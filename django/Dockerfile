@@ -13,12 +13,14 @@ RUN apk update \
 # Pillow dependencias
 RUN apk add zlib-dev jpeg-dev libjpeg
 
+RUN pip install --upgrade pip
+
 RUN apk add --no-cache --virtual .build-deps libc-dev libxslt-dev zlib  && \
     apk add --no-cache libxslt && \
     pip install --no-cache-dir lxml>=3.5.0 && \
     apk del .build-deps
 
-RUN pip install --upgrade pip                                    
+
 RUN pip install -r /requirements.txt
 
 # Create home directory for the app user
