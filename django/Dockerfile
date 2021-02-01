@@ -15,7 +15,8 @@ RUN apk add zlib-dev jpeg-dev libjpeg
 
 RUN pip install --upgrade pip
 
-RUN apk add --no-cache --virtual .build-deps libc-dev libxslt-dev zlib  && \
+RUN apk add --no-cache libxml2-dev libxslt-dev
+RUN apk add --no-cache --virtual .build-deps libc-dev  zlib  && \
     apk add --no-cache libxslt && \
     pip install --no-cache-dir lxml>=3.5.0 && \
     apk del .build-deps
