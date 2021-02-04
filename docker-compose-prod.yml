@@ -3,9 +3,10 @@ version: '3.8'
 services:
   web:
     container_name: web_django
-    build:
-      context: ./django
-    image: "django_web"
+    image: lucasfs/lwandisurf_prod:django-3.0.7
+    # build:
+    #   context: ./django
+    # image: "django_web"
     restart: always
     env_file: 
       - ./env_files/.env.prod.web
@@ -13,7 +14,19 @@ services:
       - 8000
     depends_on:
       - db
-      
+  
+  ui:
+    container_name: ui_react
+    hostname: ui_react
+    restart: always
+    image: lwandisurf/node:latest
+    stdin_open: true
+    volumes:
+      - './interface:/app'
+      - '/app/node_modules'
+    ports:
+      - "3001:3000"
+  
   db:
     container_name: db_postgres
     restart: always
@@ -24,18 +37,39 @@ services:
       - ./env_files/.env.prod.db
 
   proxy:
-    container_name: proxy_nginx
-    build:
-      context: ./nginx
-    image: "nginx_proxy"
+    container_name: proxy
+    image: lucasfs/lwandisurf_prod:nginx-1.19.0
+    # build:
+    #   context: ./ 
+    # image: "nginx_proxy"
     volumes:
       - static_data:/home/app/web/staticfiles
       - media_data:/home/app/web/mediafiles
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     ports:
       - "80:80"
     depends_on:
       - web
+      
+  proxy-letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    env_file:
+      - ./env_files/.env.prod.proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+    depends_on:
+      - proxy
 
 volumes:
   static_data:
   media_data:
+  postgres_data:
+  certs:
+  html:
+  vhost:
