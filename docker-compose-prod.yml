@@ -3,25 +3,45 @@ version: '3.8'
 services:
   web:
     container_name: web_django
-    build:
-      context: ./django
-    image: "django_web"
+    image: lucasfs/django_lwandisurf_dev:1.1
     restart: always
-    env_file: 
-      - ./env_files/.env.prod.web
-    expose:
-      - 8000
+    hostname: web_django
+    # build:
+    #   context: ./django
+    #   dockerfile: Dockerfile.dev
+    volumes:
+      - django_project:/app/web/
+    env_file:
+      - ./env_files/.env.dev.web
+    ports:
+      - "8000:8000"
     depends_on:
       - db
       
   db:
     container_name: db_postgres
+    hostname: db_postgres
     restart: always
-    image: postgres:12.0-alpine
+    image: lucasfs/postgres_lwandisurf_dev:1.0
+    # build:
+    #   context: ./postgres
     volumes:
-      - $PWD/volumes/postgres:/var/lib/postgresql/data/
-    env_file: 
+      - postgres_backup:/backup/
+    env_file:
       - ./env_files/.env.prod.db
+
+
+  ui:
+    container_name: ui_react
+    hostname: ui_react
+    restart: always
+    image: lwandisurf/node:latest
+    stdin_open: true
+    volumes:
+      - './interface:/app'
+      - '/app/node_modules'
+    ports:
+      - "3001:3000"
 
   nginx:
     container_name: nginx-lwandisurf
