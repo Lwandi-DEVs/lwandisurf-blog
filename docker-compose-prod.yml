@@ -32,7 +32,7 @@ services:
     build: ./nginx
     restart: always
     volumes:
-      - api_data:/lwandisurf_nginx
+      - api_data:/docker_api
       - ./log:/var/log/nginx
     networks:
       - proxy
