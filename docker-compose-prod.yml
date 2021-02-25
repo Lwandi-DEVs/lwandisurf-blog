@@ -56,6 +56,7 @@ services:
 
 
 volumes:
+  api_data:
   static_data:
   media_data:
   postgres_data:
