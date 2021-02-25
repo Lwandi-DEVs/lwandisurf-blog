@@ -1,13 +1,5 @@
-FROM nginx:latest
+FROM nginx:1.19.0-alpine
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY my_nginx.conf /etc/nginx/sites-available/
-
-RUN mkdir -p /etc/nginx/sites-enabled/\
-    && ln -s /etc/nginx/sites-available/my_nginx.conf /etc/nginx/sites-enabled/
-
-# RUN mkdir -p /etc/nginx/sites-enabled/\
-#     && ln -s /etc/nginx/sites-available/my_nginx.conf /etc/nginx/sites-enabled/\
-#     && rm /etc/nginx/conf.d/default.conf
-
-CMD ["nginx", "-g", "daemon off;"]
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
+COPY custom.conf /etc/nginx/conf.d/custom.conf

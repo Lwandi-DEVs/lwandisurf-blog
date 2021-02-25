@@ -3,34 +3,18 @@ version: '3.8'
 services:
   web:
     container_name: web_django
-    image: lucasfs/django_lwandisurf_dev:1.1
-    restart: always
-    hostname: web_django
+    image: lucasfs/lwandisurf_prod:django-3.0.7
     # build:
     #   context: ./django
-    #   dockerfile: Dockerfile.dev
-    volumes:
-      - django_project:/app/web/
-    env_file:
-      - ./env_files/.env.dev.web
-    ports:
-      - "8000:8000"
+    # image: "django_web"
+    restart: always
+    env_file: 
+      - ./env_files/.env.prod.web
+    expose:
+      - 8000
     depends_on:
       - db
-      
-  db:
-    container_name: db_postgres
-    hostname: db_postgres
-    restart: always
-    image: lucasfs/postgres_lwandisurf_dev:1.0
-    # build:
-    #   context: ./postgres
-    volumes:
-      - postgres_backup:/backup/
-    env_file:
-      - ./env_files/.env.prod.db
-
-
+  
   ui:
     container_name: ui_react
     hostname: ui_react
@@ -42,30 +26,50 @@ services:
       - '/app/node_modules'
     ports:
       - "3001:3000"
-
-  nginx:
-    container_name: nginx-lwandisurf
-    build: ./nginx
+  
+  db:
+    container_name: db_postgres
     restart: always
+    image: postgres:12.0-alpine
     volumes:
-      - api_data:/docker_api
-      - ./log:/var/log/nginx
-    networks:
-      - proxy
+      - $PWD/volumes/postgres:/var/lib/postgresql/data/
+    env_file: 
+      - ./env_files/.env.prod.db
+
+  proxy:
+    container_name: proxy
+    image: lucasfs/lwandisurf_prod:nginx-1.19.0
+    # build:
+    #   context: ./ 
+    # image: "nginx_proxy"
+    volumes:
+      - static_data:/home/app/web/staticfiles
+      - media_data:/home/app/web/mediafiles
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+      - "80:80"
     depends_on:
-      - api
-    environment:
-      - VIRTUAL_HOST=lwandisurf.org
-      - VIRTUAL_NETWORK=nginx-proxy
-      - VIRTUAL_PORT=80
-      - LETSENCRYPT_HOST=lwandisurf.org
-      - LETSENCRYPT_EMAIL=admin@growtechnologies.com.br
+      - web
+      
+  proxy-letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    env_file:
+      - ./env_files/.env.prod.proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+    depends_on:
+      - proxy
 
 volumes:
   static_data:
   media_data:
-
-networks:
-  proxy:
-    external:
-      name: nginx-proxy
+  postgres_data:
+  certs:
+  html:
+  vhost:
