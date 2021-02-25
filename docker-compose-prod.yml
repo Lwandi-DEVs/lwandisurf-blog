@@ -37,7 +37,7 @@ services:
     networks:
       - proxy
     depends_on:
-      - api
+      - web
     environment:
       - VIRTUAL_HOST=lwandisurf.org
       - VIRTUAL_NETWORK=nginx-proxy
