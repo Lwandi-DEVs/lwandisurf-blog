@@ -7,19 +7,18 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /requirements.txt
 
 # Install dependencies
-RUN apk update
-RUN apk add libxml2 libxslt
-RUN apk add --virtual .build-deps libxml2 libxslt
-RUN apk add --no-cache --virtual .build-deps libxml2-dev libc-dev  zlib  && \
-    apk add --no-cache libxslt && \
-    pip install --no-cache-dir lxml>=3.5.0 && \
-    apk del .build-deps
-
 RUN apk update \
     && apk add --no-cache linux-headers postgresql-dev gcc python3-dev musl-dev
 
 RUN pip install --upgrade pip
 RUN pip install -r /requirements.txt
+
+RUN apk update
+RUN apk add --no-cache --virtual .build-deps libxml2 libxslt libxml2-dev libc-dev  zlib  && \
+    apk add --no-cache libxslt && \
+    pip install --no-cache-dir lxml>=3.5.0 && \
+    apk del .build-deps
+
 
 RUN apk add python3-dev build-base linux-headers pcre-dev
 RUN pip install https://github.com/unbit/uwsgi/archive/uwsgi-2.0.zip#egg=uwsgi
