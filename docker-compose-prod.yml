@@ -3,9 +3,9 @@ version: '3.8'
 services:
   web:
     container_name: web_django
-    image: lucasfs/lwandisurf_prod:django-3.0.7
-    # build:
-    #   context: ./django
+#    image: lucasfs/lwandisurf_prod:django-3.0.7
+    build:
+      context: ./django
     # image: "django_web"
     restart: always
     command: uwsgi --ini uwsgi.ini
