@@ -8,13 +8,17 @@ services:
     #   context: ./django
     # image: "django_web"
     restart: always
-    env_file: 
+    volumes:
+      - api_data:/docker_api
+      networks:
+        - proxy
+    env_file:
       - ./env_files/.env.prod.web
     expose:
       - 8000
     depends_on:
       - db
-  
+
   ui:
     container_name: ui_react
     hostname: ui_react
@@ -44,14 +48,14 @@ services:
       - VIRTUAL_PORT=80
       - LETSENCRYPT_HOST=lwandisurf.org
       - LETSENCRYPT_EMAIL=admin@growtechnologies.com.br
-  
+
   db:
     container_name: db_postgres
     restart: always
     image: postgres:12.0-alpine
     volumes:
       - $PWD/volumes/postgres:/var/lib/postgresql/data/
-    env_file: 
+    env_file:
       - ./env_files/.env.prod.db
 
 
