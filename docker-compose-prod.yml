@@ -10,8 +10,8 @@ services:
     restart: always
     volumes:
       - api_data:/docker_api
-      networks:
-        - proxy
+    networks:
+      - proxy
     env_file:
       - ./env_files/.env.prod.web
     expose:
