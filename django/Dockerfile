@@ -20,6 +20,9 @@ RUN apk update \
 RUN pip install --upgrade pip
 RUN pip install -r /requirements.txt
 
+RUN apk add python3-dev build-base linux-headers pcre-dev
+RUN pip install https://github.com/unbit/uwsgi/archive/uwsgi-2.0.zip#egg=uwsgi
+
 # Pillow dependencias
 RUN apk add zlib-dev jpeg-dev libjpeg
 
