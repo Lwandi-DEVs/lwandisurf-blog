@@ -8,6 +8,7 @@ COPY ./requirements.txt /requirements.txt
 
 # Install dependencies
 RUN apk update
+RUN apk add libxml2 libxslt
 RUN apk add --virtual .build-deps libxml2 libxslt
 RUN apk add --no-cache --virtual .build-deps libxml2-dev libc-dev  zlib  && \
     apk add --no-cache libxslt && \
