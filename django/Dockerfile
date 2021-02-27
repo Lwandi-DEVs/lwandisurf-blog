@@ -7,7 +7,6 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /requirements.txt
 
 # install psycopg2 dependencies
-RUN apk add libzbar-dev
 RUN apk update \
     && apk add postgresql-dev python3-dev musl-dev gcc
 
@@ -15,7 +14,7 @@ RUN apk update \
 RUN apk add zlib-dev jpeg-dev libjpeg
 
 # dependencies
-RUN apk add --no-cache --virtual .build-deps libc-dev libxslt-dev zlib  && \
+RUN apk add --no-cache --virtual .build-deps gcc libc-dev libxslt-dev && \
     apk add --no-cache libxslt && \
     pip install --no-cache-dir lxml>=3.5.0 && \
     apk del .build-deps
