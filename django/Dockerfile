@@ -14,8 +14,8 @@ RUN apk update \
 RUN apk add zlib-dev jpeg-dev libjpeg
 
 # dependencies
-RUN apk add --no-cache --virtual .build-deps gcc libc-dev libxslt-dev && \
-    apk add --no-cache libxslt && \
+RUN apk add --no-cache --virtual .build-deps gcc libc-dev libxslt-dev  && \
+    apk add --no-cache libxml2 libxml2-devel libxslt libxslt-devel python-lxml && \
     pip install --no-cache-dir lxml>=3.5.0 && \
     apk del .build-deps
 
