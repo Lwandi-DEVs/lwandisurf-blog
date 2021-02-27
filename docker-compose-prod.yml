@@ -10,7 +10,7 @@ services:
     restart: always
     command: uwsgi --ini uwsgi.ini
     volumes:
-      - api_data:/docker_api
+      - django_project:/app/web/
     networks:
       - proxy
     env_file:
@@ -37,7 +37,7 @@ services:
     build: ./nginx
     restart: always
     volumes:
-      - api_data:/docker_api
+      - django_project:/app/web/
       - ./log:/var/log/nginx
     networks:
       - proxy
@@ -61,7 +61,7 @@ services:
 
 
 volumes:
-  api_data:
+  django_project:
   static_data:
   media_data:
   postgres_data:

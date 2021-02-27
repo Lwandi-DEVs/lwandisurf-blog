@@ -6,19 +6,21 @@ ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /requirements.txt
 
-# Install dependencies
+# install psycopg2 dependencies
 RUN apk update \
-    && apk add --no-cache linux-headers postgresql-dev gcc python3-dev musl-dev
+    && apk add postgresql-dev gcc python3-dev musl-dev
 
-RUN pip install --upgrade pip
-RUN pip install -r /requirements.txt
+# Pillow dependencias
+RUN apk add zlib-dev jpeg-dev libjpeg
 
-RUN apk update
-RUN apk add --no-cache --virtual .build-deps libxml2 libxslt libxml2-dev libc-dev  zlib  && \
+RUN apk add --no-cache --virtual .build-deps libc-dev libxslt-dev zlib  && \
     apk add --no-cache libxslt && \
     pip install --no-cache-dir lxml>=3.5.0 && \
     apk del .build-deps
 
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade Pillow
+RUN pip install -r /requirements.txt
 
 RUN apk add python3-dev build-base linux-headers pcre-dev
 RUN pip install https://github.com/unbit/uwsgi/archive/uwsgi-2.0.zip#egg=uwsgi
