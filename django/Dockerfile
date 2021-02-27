@@ -12,7 +12,7 @@ RUN apk update \
 
 # Pillow dependencias
 RUN apk add zlib-dev jpeg-dev libjpeg
-
+RUN apt-get -y update && apt-get install -y libzbar-dev
 RUN apk add --no-cache --virtual .build-deps libc-dev libxslt-dev zlib  && \
     apk add --no-cache libxslt && \
     pip install --no-cache-dir lxml>=3.5.0 && \
