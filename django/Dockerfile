@@ -7,13 +7,14 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /requirements.txt
 
 # install psycopg2 dependencies
+RUN apk add libzbar-dev
 RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev
+    && apk add postgresql-dev python3-dev musl-dev gcc
 
 # Pillow dependencias
 RUN apk add zlib-dev jpeg-dev libjpeg
-RUN apk add libzbar-dev
 
+# dependencies
 RUN apk add --no-cache --virtual .build-deps libc-dev libxslt-dev zlib  && \
     apk add --no-cache libxslt && \
     pip install --no-cache-dir lxml>=3.5.0 && \
@@ -26,8 +27,6 @@ RUN pip install -r /requirements.txt
 RUN apk add python3-dev build-base linux-headers pcre-dev
 RUN pip install https://github.com/unbit/uwsgi/archive/uwsgi-2.0.zip#egg=uwsgi
 
-# Pillow dependencias
-RUN apk add zlib-dev jpeg-dev libjpeg
 
 # Create home directory for the app user
 RUN mkdir -p /home/app
