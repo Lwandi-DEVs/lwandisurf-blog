@@ -6,7 +6,7 @@ services:
     build: ./nginx
     restart: always
     volumes:
-      - django_project:/app/web/
+      - django_project:/app/web
       - ./log:/var/log/nginx
     networks:
       - proxy
@@ -28,7 +28,7 @@ services:
     restart: always
     command: uwsgi --ini uwsgi.ini
     volumes:
-      - django_project:/app/web/
+      - django_project:/app/web
     networks:
       - proxy
     env_file:

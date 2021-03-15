@@ -10,7 +10,7 @@ services:
     #   context: ./django
     #   dockerfile: Dockerfile.dev
     volumes:
-      - django_project:/app/web/
+      - django_project:/project
     env_file: 
       - ./env_files/.env.dev.web
     ports:
