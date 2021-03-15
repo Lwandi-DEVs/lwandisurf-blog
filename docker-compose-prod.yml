@@ -26,7 +26,7 @@ services:
       context: ./django
     # image: "django_web"
     restart: always
-    command: uwsgi --ini uwsgi.ini
+    command: uwsgi --ini app/uwsgi.ini
     volumes:
       - django_project:/app/web
     networks:
