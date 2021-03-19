@@ -28,7 +28,7 @@ services:
     restart: always
     command: uwsgi --ini uwsgi.ini
     volumes:
-      - django_project:/app/web
+      - django_project:/home/app/web
     networks:
       - proxy
     env_file:
