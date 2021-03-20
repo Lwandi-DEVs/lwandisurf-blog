@@ -38,18 +38,6 @@ services:
     depends_on:
       - db
 
-  ui:
-    container_name: ui_react
-    hostname: ui_react
-    restart: always
-    image: lwandisurf/node:latest
-    stdin_open: true
-    volumes:
-      - './interface:/app'
-      - '/app/node_modules'
-    ports:
-      - "3001:3000"
-
   db:
     container_name: db_postgres
     restart: always
