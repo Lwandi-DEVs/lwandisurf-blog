@@ -54,8 +54,8 @@ services:
     image: postgres:12.0-alpine
     networks:
       - proxy
-    volumes:
-      - $PWD/volumes/postgres:/var/lib/postgresql/data/
+#    volumes:
+#      - $PWD/volumes/postgres:/var/lib/postgresql/data/
     env_file:
       - ./env_files/.env.prod.db
 
