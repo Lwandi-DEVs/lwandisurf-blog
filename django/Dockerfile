@@ -27,7 +27,7 @@ RUN pip install https://github.com/unbit/uwsgi/archive/uwsgi-2.0.zip#egg=uwsgi
 
 
 # Create home directory for the app user
-RUN mkdir -p /home/app
+RUN mkdir -p /app
 
 # Create the app user without root prvilegies
 RUN addgroup -S app && adduser -S app -G app
