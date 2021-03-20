@@ -35,7 +35,7 @@ RUN pip install -r requirements.txt
 COPY scripts/entrypoint.sh /app/web/entrypoint.sh
 
 # copy project
-COPY django/app/ /app/web
+COPY app/ /app/web
 
 # run entrypoint.sh
 ENTRYPOINT ["/app/web/entrypoint.sh"]
