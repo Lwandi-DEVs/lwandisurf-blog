@@ -37,7 +37,7 @@ COPY scripts/entrypoint.sh /app/web/entrypoint.sh
 # copy project
 COPY app/ /app/web
 
-RUN chmod +x /app/web/scripts/*
+RUN chmod +x /app/web/entrypoint.sh
 
 # run entrypoint.sh
 ENTRYPOINT ["/app/web/entrypoint.sh"]
