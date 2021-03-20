@@ -59,6 +59,10 @@ RUN chown -R app:app $APP_HOME
 # copy entrypoint.sh
 COPY ./scripts /scripts
 
+RUN chmod +x /scripts/*
+
+USER app
+
 # run entrypoint.sh
 ENTRYPOINT ["/scripts/entrypoint.sh"]
 
