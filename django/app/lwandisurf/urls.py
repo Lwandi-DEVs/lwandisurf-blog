@@ -27,7 +27,7 @@ from user.api.viewsets import UserViewSet
 from blog.api.viewsets import PostViewSet
 
 router = routers.SimpleRouter()
-router.register(r'', LwandisurfViewSet)
+router.register(r'lwandisurf', LwandisurfViewSet)
 router.register(r'albums', AlbumViewSet)
 router.register(r'photos', PhotoViewSet)
 router.register(r'users', UserViewSet)
