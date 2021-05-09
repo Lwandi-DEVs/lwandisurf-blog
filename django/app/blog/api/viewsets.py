@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from blog.models import Post
 from .serializers import PostSerializer
 
@@ -8,4 +8,4 @@ class PostViewSet(ModelViewSet):
     queryset = Post.objects.order_by('-id').all()
     serializer_class = PostSerializer
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
