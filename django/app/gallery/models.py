@@ -1,5 +1,7 @@
 from django.db import models
+from gdstorage.storage import GoogleDriveStorage
 
+gd_storage = GoogleDriveStorage()
 
 class Album(models.Model):
     name = models.CharField('Nome', max_length=50)
@@ -18,7 +20,7 @@ class Album(models.Model):
 
 class Photo(models.Model):
     album_fk = models.ForeignKey(Album, on_delete=models.CASCADE)
-    path = models.ImageField('Caminho', upload_to='gallery')
+    path = models.ImageField('Caminho', upload_to='gallery', storage=gd_storage)
     name = models.CharField('Nome', max_length=50)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

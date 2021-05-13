@@ -1,12 +1,13 @@
 from django.db import models
-
-
-# Create your models here.
 from user.models import User
+
+from gdstorage.storage import GoogleDriveStorage
+
+gd_storage = GoogleDriveStorage()
 
 
 class Post(models.Model):
-    cover = models.ImageField('Capa', upload_to='covers')
+    cover = models.ImageField('Capa', upload_to='covers', storage=gd_storage)
     title = models.CharField('Título', max_length=50)
     content = models.TextField('Conteúdo')
     author = models.ForeignKey(User, on_delete=models.PROTECT)

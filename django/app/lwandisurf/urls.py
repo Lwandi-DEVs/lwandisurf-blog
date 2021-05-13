@@ -37,10 +37,11 @@ router.register(r'posts', PostViewSet)
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('', include(router.urls)),
                   path('api-auth/', obtain_auth_token),
+                  path('', include(router.urls)),
                   path('summernote/', include('django_summernote.urls')),
-                  url(r'^$', get_swagger_view(title='API Reference'), name='api_docs'),
+                  # url(r'^$', get_swagger_view(title='API Reference', urlconf='lwandisurf.urls'), name='api_docs'),
+                  url(r'^$', get_swagger_view(title='Endpoints'), name='api_docs'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
