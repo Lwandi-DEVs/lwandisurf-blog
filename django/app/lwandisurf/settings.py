@@ -186,12 +186,9 @@ SWAGGER_SETTINGS = {
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'lwandi-blog.json')
 GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = 'lwandisurfweb'  # OPTIONAL
 
-from gdstorage.storage import GoogleDriveStorage
-gd_storage = GoogleDriveStorage()
-
 SUMMERNOTE_CONFIG = {
     'summernote': {
         # Set custom storage class for attachments.
-        'attachment_storage_class': gd_storage,
+        'attachment_storage_class': 'gdstorage.storage.GoogleDriveStorage',
     }
 }
