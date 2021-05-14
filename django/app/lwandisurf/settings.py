@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'django_filters',
     'rest_framework_swagger',
+    'gdstorage',
     # apps
     'core',
     'gallery',
@@ -158,17 +160,17 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication'
+        'rest_framework.authentication.SessionAuthentication',
     )
 }
 
 SWAGGER_SETTINGS = {
     'LOGIN_URL': '/admin/login',
     'LOGOUT_URL': '/admin/logout',
-    'USE_SESSION_AUTH': False,
+    'USE_SESSION_AUTH': True,
     'JSON_EDITOR': True,
     "api_version": '0.1',  # Specify your API's version
-    "api_path": "/",  # Specify the path to your API not a root level
+    # "api_path": "/",  # Specify the path to your API not a root level
     "enabled_methods": [  # Specify which methods to enable in Swagger UI
         'get',
         'post',
@@ -176,6 +178,17 @@ SWAGGER_SETTINGS = {
         'patch',
         'delete'
     ],
-    "is_authenticated": False,  # Set to True to enforce user authentication,
+    "is_authenticated": True,  # Set to True to enforce user authentication,
     "is_superuser": False,  # Set to True to enforce admin only access
+}
+
+
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'lwandi-blog.json')
+GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = 'lwandisurfweb'  # OPTIONAL
+
+SUMMERNOTE_CONFIG = {
+    'summernote': {
+        # Set custom storage class for attachments.
+        'attachment_storage_class': 'gdstorage.storage.GoogleDriveStorage',
+    }
 }
