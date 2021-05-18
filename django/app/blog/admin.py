@@ -9,4 +9,5 @@ class PostAdmin(SummernoteModelAdmin):
     autocomplete_fields = ['author']
 
 
+
 admin.site.register(Post, PostAdmin)
