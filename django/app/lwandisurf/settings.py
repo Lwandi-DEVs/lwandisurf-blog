@@ -182,13 +182,11 @@ SWAGGER_SETTINGS = {
     "is_superuser": False,  # Set to True to enforce admin only access
 }
 
-
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'lwandi-blog.json')
 GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = 'lwandisurfweb'  # OPTIONAL
 
 SUMMERNOTE_CONFIG = {
-    'summernote': {
-        # Set custom storage class for attachments.
-        'attachment_storage_class': 'gdstorage.storage.GoogleDriveStorage',
-    }
+    'attachment_storage_class': 'gdstorage.storage.GoogleDriveStorage',
+    'attachment_filesize_limit': 1024 * 1024 * 1024,
+    'attachment_absolute_uri': True,
 }
