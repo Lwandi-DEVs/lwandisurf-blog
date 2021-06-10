@@ -16,6 +16,7 @@ class AlbumViewSet(ModelViewSet):
     ordering_fields = ['id', 'created', 'updated', 'name']
     ordering = ['id']
 
+
 class PhotoViewSet(ModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializer

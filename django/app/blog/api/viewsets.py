@@ -12,13 +12,14 @@ class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication, SessionAuthentication)
+    lookup_field = 'slug'
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         responsedata = serializer.data
         post = self.get_object()
-        responsedata['slug'] = slugify(post.title)
+        # responsedata['slug'] = slugify(post.title)
         responsedata['author'] = post.author.name
         return Response(responsedata)
 
@@ -34,6 +35,6 @@ class PostViewSet(ModelViewSet):
         responsedata = serializer.data
         for obj in responsedata:
             post = Post.objects.get(id=obj['id'])
-            obj['slug'] = slugify(post.title)
+            # obj['slug'] = slugify(post.title)
             obj['author'] = post.author.name
         return Response(responsedata)
