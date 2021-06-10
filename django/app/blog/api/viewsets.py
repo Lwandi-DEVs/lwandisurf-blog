@@ -19,6 +19,7 @@ class PostViewSet(ModelViewSet):
         responsedata = serializer.data
         post = self.get_object()
         responsedata['slug'] = slugify(post.title)
+        responsedata['author'] = post.author.name
         return Response(responsedata)
 
     def list(self, request, *args, **kwargs):
@@ -34,4 +35,5 @@ class PostViewSet(ModelViewSet):
         for obj in responsedata:
             post = Post.objects.get(id=obj['id'])
             obj['slug'] = slugify(post.title)
+            obj['author'] = post.author.name
         return Response(responsedata)
