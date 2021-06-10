@@ -13,7 +13,7 @@ class Post(models.Model):
     slug = models.SlugField('Slug', max_length=50, unique=True, null=True, blank=True,
                             help_text='Esse campo é calculado automaticamente, pode deixar em branco')
     content = models.TextField('Conteúdo')
-    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    author = models.ForeignKey(User, verbose_name='Autor', on_delete=models.PROTECT)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
