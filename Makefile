@@ -46,8 +46,22 @@ prod_deploy:
 	/bin/sleep 3
 	docker-compose -f docker-compose-prod.yml up -d --build
 
+prod_deploy-nc:
+	docker-compose -f docker-compose-prod.yml down -v
+	/bin/sleep 3
+	docker-compose -f docker-compose-prod.yml build --no-cache web
+	docker-compose -f docker-compose-prod.yml build --no-cache nginx
+	docker-compose -f docker-compose-prod.yml up -d
+
 prod_down:
 	docker-compose -f docker-compose-prod.yml down -v
+
+prod_createsuperuser:
+	docker-compose -f docker-compose-prod.yml exec web python manage.py createsuperuser
+
+reset_postgres_data:
+	sudo rm -r volumes/postgres/
+	sudo mkdir -p volumes/postgres/
 
 # build_web:
 # 	docker-compose -f docker-compose-dev.yml build --no-cache web
