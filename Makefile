@@ -41,6 +41,11 @@ db_backup:
 db_restore:
 	docker-compose -f docker-compose-dev.yml exec db restore.sh
 
+prod_deploy:
+	docker-compose -f docker-compose-prod.yml down -v
+	sleep 3
+	docker-compose -f docker-compose-prod.yml up -d --build
+
 # build_web:
 # 	docker-compose -f docker-compose-dev.yml build --no-cache web
 
