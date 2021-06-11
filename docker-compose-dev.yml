@@ -30,17 +30,17 @@ services:
     env_file: 
       - ./env_files/.env.dev.db
 
-  ui:
-    container_name: ui_react
-    hostname: ui_react
-    restart: always
-    image: lwandisurf/node:latest
-    stdin_open: true
-    volumes:
-      - './interface:/app'
-      - '/app/node_modules'
-    ports:
-      - "3001:3000"
+  # ui:
+  #   container_name: ui_react
+  #   hostname: ui_react
+  #   restart: always
+  #   image: lwandisurf/node:latest
+  #   stdin_open: true
+  #   volumes:
+  #     - './interface:/app'
+  #     - '/app/node_modules'
+  #   ports:
+  #     - "3001:3000"
 
 volumes:
   postgres_backup:
