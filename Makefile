@@ -43,8 +43,11 @@ db_restore:
 
 prod_deploy:
 	docker-compose -f docker-compose-prod.yml down -v
-	sleep 3
+	/bin/sleep 3
 	docker-compose -f docker-compose-prod.yml up -d --build
+
+prod_down:
+	docker-compose -f docker-compose-prod.yml down -v
 
 # build_web:
 # 	docker-compose -f docker-compose-dev.yml build --no-cache web

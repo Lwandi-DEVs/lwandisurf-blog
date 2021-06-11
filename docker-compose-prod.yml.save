@@ -14,14 +14,15 @@ services:
 
   web:
     container_name: web_django
-#    image: lucasfs/lwandisurf-django:latest
-    build:
-      context: ./django
-#      image: "lwandisurf-django"
+    image: lucasfs/lwandisurf-django
+#    build:
+#      context: ./django
+#      image: "django_web"
     restart: always
     command: uwsgi --ini /app/web/uwsgi.ini
     volumes:
       - django_project:/app/web
+      
     networks:
       - proxy
     env_file:

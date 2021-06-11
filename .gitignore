@@ -110,3 +110,9 @@ venv.bak/
 
 django/app/mediafiles/*
 django/app/staticfiles/*
+
+# Don't send credentials to git repository
+django/app/lwandi-blog.json
+
+# Docker postgres volume files
+volumes/postgres/*
