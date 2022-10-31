@@ -32,6 +32,10 @@ ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
 if ALLOWED_HOSTS_ENV:
     ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
 
+ADMINS = (
+    ('Zorgen', 'suporte@zorgen.tech'),
+)
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
