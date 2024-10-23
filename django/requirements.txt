@@ -7,3 +7,4 @@ django-cors-headers
 django-filter
 django-rest-swagger
 django-googledrive-storage==1.5.2
+gunicorn

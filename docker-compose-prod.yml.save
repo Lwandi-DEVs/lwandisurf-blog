@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  db-lwandi:
+  lwandisurf_db:
     container_name: db_postgres
     restart: always
     image: postgres:12.0-alpine
@@ -28,7 +28,7 @@ services:
     env_file:
       - ./env_files/.env.prod.web
     depends_on:
-      - db-lwandi
+      - lwandisurf_db
 
   nginx:
     container_name: nginx-lwandisurf

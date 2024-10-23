@@ -40,27 +40,8 @@ RUN mkdir $APP_HOME/mediafiles
 
 WORKDIR $APP_HOME
 
-# copy project
-COPY ./app $APP_HOME
 
-# chown all the files to the app user
-RUN chown -R app:app $APP_HOME
 
-#ENV PATH="/scripts:${PATH}"
-#
-#COPY ./scripts /scripts
-#RUN chmod +x /scripts/*
-#
-## change to the app user
-#USER app
-#
-#CMD ["entrypoint.sh"]
 
-# copy entrypoint.sh
-COPY ./scripts /scripts
 
-RUN chmod +x /scripts/*
-
-# run entrypoint.sh
-ENTRYPOINT ["/scripts/entrypoint.sh"]
 

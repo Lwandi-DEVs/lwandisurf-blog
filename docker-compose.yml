@@ -1,26 +1,51 @@
 services:
-  db-lwandi:
+  lwandisurf_db:
     restart: always
     image: postgres:12.0-alpine
     volumes:
       - ./volumes/postgres:/var/lib/postgresql/data/
     env_file:
       - ./env_files/.env.prod.db
+    healthcheck:
+      test: pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB
+      interval: 10s
+      timeout: 3s
+      retries: 3
 
-  lwandisurf_web:
-#    image: lucasfs/lwandisurf-django:latest
-    build:
-      context: ./django
-#      image: "lwandisurf-django"
-    restart: always
-    command: uwsgi --ini /app/web/uwsgi.ini
+  lwandisurf_setup: &lwandisurf_setup
+    build: ./django    
     volumes:
       - ./django/app/:/app/web
     env_file:
       - ./env_files/.env.prod.web
     depends_on:
-      - db-lwandi
+      lwandisurf_db:
+        condition: service_healthy
 
+  lwandisurf_collecstatic:
+    <<: *lwandisurf_setup
+    command: "python manage.py collectstatic --noinput --clear"
 
-volumes:
-  django_project:
+  lwandisurf_migrate:
+    <<: *lwandisurf_setup
+    command: "python manage.py migrate"
+
+  lwandisurf_web:
+    <<: *lwandisurf_setup
+    depends_on:
+      lwandisurf_collecstatic:
+        condition: service_completed_successfully
+      lwandisurf_migrate:
+        condition: service_completed_successfully
+    restart: always
+    command: "gunicorn 
+      lwandisurf.wsgi:application
+      --access-logfile '-' 
+      --error-logfile error.log
+      --access-logformat '%(m)s status %(s)s | response-time %(M)s | path %(U)s' 
+      --workers 2
+      --threads 4 
+      --log-level=error
+      --worker-class 'gthread' 
+      --limit-request-line 0
+      --bind 0.0.0.0:8000"
